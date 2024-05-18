@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 // Import your routes here
+import conversationRoutes from './routes/conversation'
+import messageRoutes from './routes/message';
 import App from './App';
-
-const NotFound = () => (
-  <h1>Not Found</h1>
-);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,8 +16,9 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App/>}/>
-        {/* Add your routes here */}
-        <Route path='*' element={<NotFound/>} />
+        { conversationRoutes }
+        { messageRoutes }
+        <Route path='*' element={<Navigate replace to="/" />} />
       </Routes>
     </Router>
   </React.StrictMode>
