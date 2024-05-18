@@ -4,7 +4,7 @@ import './App.css'
 function App() {
     return (
         <>
-            <h1>Chat home</h1>
+            <h1>FRONT CHAT</h1>
             <ul>
                 <li>
                     <a href="/conversations">Conversations</a>
