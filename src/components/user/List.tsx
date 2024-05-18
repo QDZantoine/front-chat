@@ -17,7 +17,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
   return (
     <div>
-      <h1>Message List</h1>
+      <h1>User List</h1>
 
       {loading && <div className="alert alert-info">Loading...</div>}
       {error && <div className="alert alert-danger">{error.message}</div>}
@@ -32,10 +32,12 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
         <thead>
           <tr>
             <th>id</th>
-            <th>createdAt</th>
-            <th>text</th>
-            <th>conversation</th>
-            <th>userKind</th>
+            <th>username</th>
+            <th>roles</th>
+            <th>password</th>
+            <th>conversationUsers</th>
+            <th>conversationBots</th>
+            <th>userIdentifier</th>
             <th colSpan={2} />
           </tr>
         </thead>
@@ -50,27 +52,34 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </th>
-              <td>{item["createdAt"]}</td>
-              <td>{item["text"]}</td>
+              <td>{item["username"]}</td>
+              <td>{item["roles"]}</td>
+              <td>{item["password"]}</td>
               <td>
                 <Links
-                  items={{
-                    href: `/conversations/show/${encodeURIComponent(
-                      item["conversation"]
-                    )}`,
-                    name: item["conversation"],
-                  }}
+                  items={item["conversationUsers"].map((ref: any) => ({
+                    href: `/conversations/show/${encodeURIComponent(ref)}`,
+                    name: ref,
+                  }))}
                 />
               </td>
-              <td>{item["userKind"]}</td>
               <td>
-                <Link to={`/messages/show/${encodeURIComponent(item["@id"])}`}>
+                <Links
+                  items={item["conversationBots"].map((ref: any) => ({
+                    href: `/conversations/show/${encodeURIComponent(ref)}`,
+                    name: ref,
+                  }))}
+                />
+              </td>
+              <td>{item["userIdentifier"]}</td>
+              <td>
+                <Link to={`/users/show/${encodeURIComponent(item["@id"])}`}>
                   <span className="fa fa-search" aria-hidden="true" />
                   <span className="sr-only">Show</span>
                 </Link>
               </td>
               <td>
-                <Link to={`/messages/edit/${encodeURIComponent(item["@id"])}`}>
+                <Link to={`/users/edit/${encodeURIComponent(item["@id"])}`}>
                   <span className="fa fa-pencil" aria-hidden="true" />
                   <span className="sr-only">Edit</span>
                 </Link>
@@ -87,7 +96,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
 const List = () => {
   const { page } = useParams<{ page?: string }>();
-  const id = (page && decodeURIComponent(page)) || "api/messages";
+  const id = (page && decodeURIComponent(page)) || "api/users";
 
   const { retrieved, loading, error } =
     useRetrieve<PagedCollection<TResource>>(id);
