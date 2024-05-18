@@ -6,6 +6,7 @@ import 'font-awesome/css/font-awesome.css';
 // Import your routes here
 import conversationRoutes from './routes/conversation'
 import messageRoutes from './routes/message';
+import userRoutes from './routes/user';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -18,6 +19,7 @@ root.render(
         <Route path="/" element={<App/>}/>
         { conversationRoutes }
         { messageRoutes }
+        { userRoutes }
         <Route path='*' element={<Navigate replace to="/" />} />
       </Routes>
     </Router>

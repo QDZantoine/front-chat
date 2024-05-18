@@ -12,6 +12,9 @@ function App() {
                 <li>
                     <a href="/messages">Messages</a>
                 </li>
+                <li>
+                    <a href="/users">Users</a>
+                </li>
             </ul>
         </>
     )
