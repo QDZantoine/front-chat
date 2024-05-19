@@ -19,10 +19,12 @@ const Pagination = ({ retrieved }: PaginationProps) => {
   } = view;
 
   return (
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" className="flex space-x-2 mt-4 justify-center">
       <Link
         to="."
-        className={`btn btn-primary${previous ? "" : " disabled"}`}
+        className={`px-4 py-2 rounded ${
+          previous ? "bg-blue-500 hover:bg-blue-700" : "bg-blue-300 cursor-not-allowed"
+        } text-white`}
         aria-label="First page"
       >
         <span aria-hidden="true">&lArr;</span> First
@@ -31,21 +33,27 @@ const Pagination = ({ retrieved }: PaginationProps) => {
         to={
           !previous || previous === first ? "." : encodeURIComponent(previous)
         }
-        className={`btn btn-primary${previous ? "" : " disabled"}`}
+        className={`px-4 py-2 rounded ${
+          previous ? "bg-blue-500 hover:bg-blue-700" : "bg-blue-300 cursor-not-allowed"
+        } text-white`}
         aria-label="Previous page"
       >
         <span aria-hidden="true">&larr;</span> Previous
       </Link>
       <Link
         to={next ? encodeURIComponent(next) : "#"}
-        className={`btn btn-primary${next ? "" : " disabled"}`}
+        className={`px-4 py-2 rounded ${
+          next ? "bg-blue-500 hover:bg-blue-700" : "bg-blue-300 cursor-not-allowed"
+        } text-white`}
         aria-label="Next page"
       >
         Next <span aria-hidden="true">&rarr;</span>
       </Link>
       <Link
         to={last ? encodeURIComponent(last) : "#"}
-        className={`btn btn-primary${next ? "" : " disabled"}`}
+        className={`px-4 py-2 rounded ${
+          next ? "bg-blue-500 hover:bg-blue-700" : "bg-blue-300 cursor-not-allowed"
+        } text-white`}
         aria-label="Last page"
       >
         Last <span aria-hidden="true">&rArr;</span>
