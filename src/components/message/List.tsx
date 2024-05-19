@@ -17,32 +17,32 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
   return (
     <div>
-      <h1>Message List</h1>
+      <h1 className="text-5xl font-extrabold dark:text-white mb-4">Message List</h1>
 
       {loading && <div className="alert alert-info">Loading...</div>}
       {error && <div className="alert alert-danger">{error.message}</div>}
 
       <p>
-        <Link to="create" className="btn btn-primary">
+        <Link to="create" className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Create
         </Link>
       </p>
 
-      <table className="table table-responsive table-striped table-hover">
-        <thead>
+      <table className="mt-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th>id</th>
-            <th>createdAt</th>
-            <th>text</th>
-            <th>conversation</th>
-            <th>userKind</th>
+            <th scope="col" className="px-6 py-3">id</th>
+            <th scope="col" className="px-6 py-3">createdAt</th>
+            <th scope="col" className="px-6 py-3">text</th>
+            <th scope="col" className="px-6 py-3">conversation</th>
+            <th scope="col" className="px-6 py-3">userKind</th>
             <th colSpan={2} />
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item["@id"]}>
-              <th scope="row">
+            <tr key={item["@id"]} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Links
                   items={{
                     href: `show/${encodeURIComponent(item["@id"])}`,
@@ -50,9 +50,9 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </th>
-              <td>{item["createdAt"]}</td>
-              <td>{item["text"]}</td>
-              <td>
+              <td className="px-6 py-4">{item["createdAt"]}</td>
+              <td className="px-6 py-4">{item["text"]}</td>
+              <td className="px-6 py-4">
                 <Links
                   items={{
                     href: `/conversations/show/${encodeURIComponent(
@@ -62,14 +62,14 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </td>
-              <td>{item["userKind"]}</td>
-              <td>
+              <td className="px-6 py-4">{item["userKind"]}</td>
+              <td className="px-6 py-4">
                 <Link to={`/messages/show/${encodeURIComponent(item["@id"])}`}>
                   <span className="fa fa-search" aria-hidden="true" />
                   <span className="sr-only">Show</span>
                 </Link>
               </td>
-              <td>
+              <td className="px-6 py-4">
                 <Link to={`/messages/edit/${encodeURIComponent(item["@id"])}`}>
                   <span className="fa fa-pencil" aria-hidden="true" />
                   <span className="sr-only">Edit</span>

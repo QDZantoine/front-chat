@@ -3,6 +3,7 @@ import Links from "../Links";
 import { useRetrieve, useDelete } from "../../hooks";
 import TResource from "./type";
 import { TError } from "../../utils/types";
+import { Button, Spinner } from "flowbite-react";
 
 interface ShowProps {
   retrieved: TResource | null;
@@ -36,9 +37,10 @@ const ShowView = ({
       <h1>Show Conversation {item && item["@id"]}</h1>
 
       {loading && (
-        <div className="alert alert-info" role="status">
-          Loading...
-        </div>
+        <div className="flex justify-center mb-2"> <Button color="gray">
+        <Spinner aria-label="Alternate spinner button example" size="md" />
+        <span className="pl-3">Loading...</span>
+      </Button></div>
       )}
       {error && (
         <div className="alert alert-danger" role="alert">
@@ -106,15 +108,15 @@ const ShowView = ({
           </tbody>
         </table>
       )}
-      <Link to="/conversations/" className="btn btn-primary">
+      <Link to="/conversations/" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Back to list
       </Link>
       {item && (
         <Link to={`/conversations/edit/${encodeURIComponent(item["@id"])}`}>
-          <button className="btn btn-warning">Edit</button>
+          <button className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit</button>
         </Link>
       )}
-      <button onClick={delWithConfirm} className="btn btn-danger">
+      <button onClick={delWithConfirm} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
         Delete
       </button>
     </div>

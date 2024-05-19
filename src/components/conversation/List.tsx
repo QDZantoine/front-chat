@@ -5,6 +5,7 @@ import { useRetrieve } from "../../hooks";
 import { PagedCollection } from "../../interfaces/Collection";
 import TResource from "./type";
 import { TError } from "../../utils/types";
+import { Button, Spinner } from "flowbite-react";
 
 interface ListProps {
   retrieved: PagedCollection<TResource> | null;
@@ -17,33 +18,36 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
   return (
     <div>
-      <h1>Conversation List</h1>
+      <h1 className="text-5xl font-extrabold dark:text-white mb-4">Conversation List</h1>
 
-      {loading && <div className="alert alert-info">Loading...</div>}
+      {loading && <div className="flex justify-center mb-2"> <Button color="gray">
+        <Spinner aria-label="Alternate spinner button example" size="md" />
+        <span className="pl-3">Loading...</span>
+      </Button></div>}
       {error && <div className="alert alert-danger">{error.message}</div>}
 
       <p>
-        <Link to="create" className="btn btn-primary">
+        <Link to="create" className=" text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Create
         </Link>
       </p>
 
-      <table className="table table-responsive table-striped table-hover">
-        <thead>
+      <table className="mt-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th>id</th>
-            <th>createdAt</th>
-            <th>nbMessages</th>
-            <th>user</th>
-            <th>bot</th>
-            <th>messages</th>
+            <th scope="col" className="px-6 py-3">id</th>
+            <th scope="col" className="px-6 py-3">createdAt</th>
+            <th scope="col" className="px-6 py-3">nbMessages</th>
+            <th scope="col" className="px-6 py-3">user</th>
+            <th scope="col" className="px-6 py-3">bot</th>
+            <th scope="col" className="px-6 py-3">messages</th>
             <th colSpan={2} />
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item["@id"]}>
-              <th scope="row">
+            <tr key={item["@id"]} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Links
                   items={{
                     href: `show/${encodeURIComponent(item["@id"])}`,
@@ -51,9 +55,9 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </th>
-              <td>{item["createdAt"]}</td>
-              <td>{item["nbMessages"]}</td>
-              <td>
+              <td className="px-6 py-4">{item["createdAt"]}</td>
+              <td className="px-6 py-4">{item["nbMessages"]}</td>
+              <td className="px-6 py-4">
                 <Links
                   items={{
                     href: `/users/show/${encodeURIComponent(item["user"])}`,
@@ -61,7 +65,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </td>
-              <td>
+              <td className="px-6 py-4">
                 <Links
                   items={{
                     href: `/users/show/${encodeURIComponent(item["bot"])}`,
@@ -69,7 +73,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }}
                 />
               </td>
-              <td>
+              <td className="px-6 py-4">
                 <Links
                   items={item["messages"].map((ref: any) => ({
                     href: `/messages/show/${encodeURIComponent(ref)}`,
@@ -77,7 +81,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   }))}
                 />
               </td>
-              <td>
+              <td className="px-6 py-4">
                 <Link
                   to={`/conversations/show/${encodeURIComponent(item["@id"])}`}
                 >
@@ -85,7 +89,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                   <span className="sr-only">Show</span>
                 </Link>
               </td>
-              <td>
+              <td className="px-6 py-4">
                 <Link
                   to={`/conversations/edit/${encodeURIComponent(item["@id"])}`}
                 >
