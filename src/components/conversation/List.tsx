@@ -31,7 +31,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
           Create
         </Link>
       </p>
-
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
       <table className="mt-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -46,7 +46,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item["@id"]} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={item["@id"]} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Links
                   items={{
@@ -101,6 +101,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
           ))}
         </tbody>
       </table>
+      </div>
 
       <Pagination retrieved={retrieved} />
     </div>
