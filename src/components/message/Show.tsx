@@ -4,6 +4,7 @@ import { useRetrieve, useDelete } from '../../hooks'
 import TResource from './type'
 import { TError } from '../../utils/types'
 import { Button, Spinner } from 'flowbite-react'
+import { format } from 'date-fns'
 
 interface ShowProps {
 	retrieved: TResource | null
@@ -12,6 +13,18 @@ interface ShowProps {
 	deleteError: TError
 	deleted: TResource | null
 	del: (item: TResource) => any
+}
+const userKind = {
+	'1': 'user',
+	'2': 'bot',
+}
+const extractConversationId = (url: string) => {
+	const parts = url.split('/')
+	return parts[parts.length - 1]
+}
+const extractMessageId = (id: string) => {
+	const parts = id.split('/')
+	return parts[parts.length - 1]
 }
 
 const ShowView = ({
@@ -31,10 +44,12 @@ const ShowView = ({
 			del(item)
 		}
 	}
-
+	const MessageId = item ? extractMessageId(item['@id']) : ''
 	return (
 		<div>
-			<h1>Show Message {item && item['@id']}</h1>
+			<h1 className="text-2xl font-extrabold dark:text-gray mb-4">
+				Message {MessageId}
+			</h1>
 
 			{loading && (
 				<div className="flex justify-center mb-2">
@@ -62,36 +77,52 @@ const ShowView = ({
 				<div className=" relative overflow-x-auto shadow-md sm:rounded-lg my-4">
 					<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 						<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-							<tr>
-								<th>Field</th>
-								<th>Value</th>
+							<tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+								<th scope="row" className="px-6 py-3">
+									Field
+								</th>
+								<th scope="row" className="px-6 py-3">
+									Value
+								</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">createdAt</th>
-								<td>{item['createdAt']}retrieved</td>
+							<tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+								<th scope="row" className="px-6 py-3">
+									createdAt
+								</th>
+								<td>
+									{format(new Date(item['createdAt']), 'yyyy/MM/dd HH:mm')}
+								</td>
 							</tr>
-							<tr>
-								<th scope="row">text</th>
-								<td>{item['text']}retrieved</td>
+							<tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+								<th scope="row" className="px-6 py-3">
+									text
+								</th>
+								<td>{item['text']}</td>
 							</tr>
-							<tr>
-								<th scope="row">conversation</th>
+							<tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+								<th scope="row" className="px-6 py-3">
+									conversation
+								</th>
 								<td>
 									<Links
 										items={{
 											href: `/conversations/show/${encodeURIComponent(
 												item['conversation']
 											)}`,
-											name: item['conversation'],
+											name: `Conversation ${extractConversationId(
+												item['conversation']
+											)}`,
 										}}
 									/>
 								</td>
 							</tr>
-							<tr>
-								<th scope="row">userKind</th>
-								<td>{item['userKind']}retrieved</td>
+							<tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+								<th scope="row" className="px-6 py-3">
+									userKind
+								</th>
+								<td>{userKind[item['userKind']] || item['userKind']}</td>
 							</tr>
 						</tbody>
 					</table>

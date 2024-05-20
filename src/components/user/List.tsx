@@ -90,8 +90,8 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									/>
 								</th>
 								<td className="px-6 py-4">{item['username']}</td>
-								<td className="px-6 py-4">{item['roles']}</td>
-								<td className="px-6 py-4">
+								<td className="px-6 py-4">{item['roles'].join(', ')}</td>
+								<td className="px-6 py-4 font-bold">
 									<Links
 										items={item['conversationUsers'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
@@ -99,7 +99,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 										}))}
 									/>
 								</td>
-								<td className="px-6 py-4">
+								<td className="px-6 py-4 font-bold">
 									<Links
 										items={item['conversationBots'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
