@@ -6,11 +6,24 @@ import { PagedCollection } from '../../interfaces/Collection'
 import TResource from './type'
 import { TError } from '../../utils/types'
 import { Button, Spinner } from 'flowbite-react'
+import { format } from 'date-fns'
 
 interface ListProps {
 	retrieved: PagedCollection<TResource> | null
 	loading: boolean
 	error: TError
+}
+const userKind = {
+	'1': 'user',
+	'2': 'bot',
+}
+const extractMessageId = (id: string) => {
+	const parts = id.split('/')
+	return `message ${parts[parts.length - 1]}`
+}
+const extractConversationId = (id: string) => {
+	const parts = id.split('/')
+	return `conversation ${parts[parts.length - 1]}`
 }
 
 const ListView = ({ error, loading, retrieved }: ListProps) => {
@@ -76,11 +89,13 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={{
 											href: `show/${encodeURIComponent(item['@id'])}`,
-											name: item['@id'],
+											name: extractMessageId(item['@id']),
 										}}
 									/>
 								</th>
-								<td className="px-6 py-4">{item['createdAt']}</td>
+								<td className="px-6 py-4">
+									{format(new Date(item['createdAt']), 'yyyy/MM/dd HH:mm')}
+								</td>
 								<td className="px-6 py-4">{item['text']}</td>
 								<td className="px-6 py-4">
 									<Links
@@ -88,11 +103,13 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 											href: `/conversations/show/${encodeURIComponent(
 												item['conversation']
 											)}`,
-											name: item['conversation'],
+											name: extractConversationId(item['conversation']),
 										}}
 									/>
 								</td>
-								<td className="px-6 py-4">{item['userKind']}</td>
+								<td className="px-6 py-4">
+									{userKind[item['userKind']] || item['userKind']}
+								</td>
 								<td className="px-6 py-4">
 									<Link
 										to={`/messages/show/${encodeURIComponent(item['@id'])}`}
