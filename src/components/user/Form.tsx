@@ -68,28 +68,21 @@ const Form = ({ onSubmit, error, reset, initialValues }: FormProps) => {
 			/>
 			<Field
 				register={register}
-				name="password"
-				placeholder="The hashed password"
-				type="text"
-				errors={errors}
-			/>
-			<Field
-				register={register}
-				name="conversationUsers"
+				name="conversation Users"
 				placeholder=""
 				type="text"
 				errors={errors}
 			/>
 			<Field
 				register={register}
-				name="conversationBots"
+				name="conversation Bots"
 				placeholder=""
 				type="text"
 				errors={errors}
 			/>
 			<Field
 				register={register}
-				name="userIdentifier"
+				name="user Identifier"
 				placeholder="A visual identifier that represents this user."
 				type="text"
 				errors={errors}
