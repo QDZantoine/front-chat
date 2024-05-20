@@ -98,7 +98,7 @@ const ShowView = ({
 								<th scope="row" className="px-6 py-3">
 									conversation Users
 								</th>
-								<td className="px-6 py-4">
+								<td className="px-6 py-4  text-blue-600">
 									<Links
 										items={item['conversationUsers'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,

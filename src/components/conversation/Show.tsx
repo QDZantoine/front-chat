@@ -133,11 +133,13 @@ const ShowView = ({
 								<th scope="row" className="px-6 pt-3">
 									messages
 								</th>
-								<td className="flex flex-wrap gap-2 my-4">
+								<td className="flex flex-wrap gap-2 my-4 text-blue-700">
 									<Links
 										items={item['messages'].map((ref: any) => ({
 											href: `/messages/show/${encodeURIComponent(ref)}`,
 											name: extractMessageId(ref),
+											className:
+												'bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-xs px-0.5 py-0.5  my-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700',
 										}))}
 									/>
 								</td>

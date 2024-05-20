@@ -116,7 +116,10 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 											item['@id']
 										)}`}
 									>
-										<span className="fa fa-search" aria-hidden="true" />
+										<span
+											className="fa fa-search text-blue-700"
+											aria-hidden="true"
+										/>
 										<span className="sr-only">Show</span>
 									</Link>
 								</td>
@@ -126,7 +129,10 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 											item['@id']
 										)}`}
 									>
-										<span className="fa fa-pencil" aria-hidden="true" />
+										<span
+											className="fa fa-pencil text-blue-700"
+											aria-hidden="true"
+										/>
 										<span className="sr-only">Edit</span>
 									</Link>
 								</td>

@@ -91,32 +91,42 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 								</th>
 								<td className="px-6 py-4">{item['username']}</td>
 								<td className="px-6 py-4">{item['roles'].join(', ')}</td>
-								<td className="px-6 py-4 font-bold">
+								<td className="px-6 py-4  text-blue-700">
 									<Links
 										items={item['conversationUsers'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
 											name: extractConversationId(ref),
+											className:
+												'bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-xs px-0.5 py-0.5  my-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700',
 										}))}
 									/>
 								</td>
-								<td className="px-6 py-4 font-bold">
+								<td className="px-6 py-4 text-blue-700">
 									<Links
 										items={item['conversationBots'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
 											name: extractConversationId(ref),
+											className:
+												'bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-xs px-0.5 py-0.5  my-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700',
 										}))}
 									/>
 								</td>
 								<td className="px-6 py-4">{item['userIdentifier']}</td>
 								<td className="px-6 py-4">
 									<Link to={`/users/show/${encodeURIComponent(item['@id'])}`}>
-										<span className="fa fa-search" aria-hidden="true" />
+										<span
+											className="fa fa-search text-blue-700"
+											aria-hidden="true"
+										/>
 										<span className="sr-only">Show</span>
 									</Link>
 								</td>
 								<td className="px-6 py-4">
 									<Link to={`/users/edit/${encodeURIComponent(item['@id'])}`}>
-										<span className="fa fa-pencil" aria-hidden="true" />
+										<span
+											className="fa fa-pencil text-blue-700"
+											aria-hidden="true"
+										/>
 										<span className="sr-only">Edit</span>
 									</Link>
 								</td>
