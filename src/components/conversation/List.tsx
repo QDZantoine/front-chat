@@ -32,7 +32,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 	return (
 		<div>
 			<div className="flex justify-between items-center mb-4">
-				<h1 className="text-5xl font-extrabold dark:text-gray">
+				<h1 className="text-4xl font-extrabold dark:text-gray">
 					Conversation List
 				</h1>
 				<Popover

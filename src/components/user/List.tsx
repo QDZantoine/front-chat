@@ -29,32 +29,29 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 	return (
 		<div>
 			<div className="flex justify-between items-center mb-4">
-				<h1 className="text-5xl font-extrabold dark:text-gray mb-4">
+				<h1 className="text-4xl font-extrabold dark:text-gray-900">
 					User List
 				</h1>
-				<div className="flex justify-end w-full">
-					<Popover
-						placement="bottom"
-						trigger="hover"
-						content={
-							<div className="p-2">
-								<div className="text-sm text-gray-700 dark:text-gray-300">
-									Total Users: {items.length}
-								</div>
+				<Popover
+					placement="bottom"
+					trigger="hover"
+					content={
+						<div className="p-2">
+							<div className="text-sm text-gray-700 dark:text-gray-300">
+								Total Users: {items.length}
 							</div>
-						}
-					>
-						<Button className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-1 py-1.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-							{' '}
-							<span
-								className="mx-2  fa fa-regular fa-user text-center"
-								aria-hidden="true"
-							/>
-							<span className="sr-only">comment</span>
-							Total {items.length}
-						</Button>
-					</Popover>
-				</div>
+						</div>
+					}
+				>
+					<Button className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-1 py-1.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+						<span
+							className="mx-2 fa fa-regular fa-user text-center"
+							aria-hidden="true"
+						/>
+						<span className="sr-only">comment</span>
+						Total {items.length}
+					</Button>
+				</Popover>
 			</div>
 
 			{loading && (
