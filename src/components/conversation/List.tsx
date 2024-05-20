@@ -40,7 +40,6 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
             <th scope="col" className="px-6 py-3">nbMessages</th>
             <th scope="col" className="px-6 py-3">user</th>
             <th scope="col" className="px-6 py-3">bot</th>
-            <th scope="col" className="px-6 py-3">messages</th>
             <th colSpan={2} />
           </tr>
         </thead>
@@ -71,14 +70,6 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
                     href: `/users/show/${encodeURIComponent(item["bot"])}`,
                     name: item["bot"],
                   }}
-                />
-              </td>
-              <td className="px-6 py-4">
-                <Links
-                  items={item["messages"].map((ref: any) => ({
-                    href: `/messages/show/${encodeURIComponent(ref)}`,
-                    name: ref,
-                  }))}
                 />
               </td>
               <td className="px-6 py-4">
