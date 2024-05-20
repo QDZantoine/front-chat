@@ -23,6 +23,9 @@ const AppNavbar = () => {
 						<Navbar.Link className="text-lg" href="/messages">
 							Messages
 						</Navbar.Link>
+						<Navbar.Link className="text-lg" href="/users">
+							Users
+						</Navbar.Link>
 					</Navbar.Collapse>
 					<DarkThemeToggle />
 				</Navbar>

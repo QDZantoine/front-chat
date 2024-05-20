@@ -17,7 +17,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
   return (
     <div>
-      <h1 className="text-5xl font-extrabold dark:text-white mb-4">Message List</h1>
+      <h1 className="text-5xl font-extrabold dark:text-gray mb-4">Message List</h1>
 
       {loading && <div className="alert alert-info">Loading...</div>}
       {error && <div className="alert alert-danger">{error.message}</div>}

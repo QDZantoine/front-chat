@@ -34,7 +34,6 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
             <th>id</th>
             <th>username</th>
             <th>roles</th>
-            <th>password</th>
             <th>conversationUsers</th>
             <th>conversationBots</th>
             <th>userIdentifier</th>
@@ -54,7 +53,6 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
               </th>
               <td>{item["username"]}</td>
               <td>{item["roles"]}</td>
-              <td>{item["password"]}</td>
               <td>
                 <Links
                   items={item["conversationUsers"].map((ref: any) => ({
