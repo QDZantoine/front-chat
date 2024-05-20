@@ -6,13 +6,23 @@ import { PagedCollection } from '../../interfaces/Collection'
 import TResource from './type'
 import { TError } from '../../utils/types'
 import { Button, Spinner } from 'flowbite-react'
+import { format } from 'date-fns'
 
 interface ListProps {
 	retrieved: PagedCollection<TResource> | null
 	loading: boolean
 	error: TError
 }
-
+const userMap = {
+	'/api/users/1': 'Antoine',
+	'/api/users/2': 'Didier',
+	'/api/users/3': 'Jouni',
+	'/api/users/4': 'Bot1',
+}
+const extractConversationId = (id: string) => {
+	const parts = id.split('/')
+	return `conversation ${parts[parts.length - 1]}`
+}
 const ListView = ({ error, loading, retrieved }: ListProps) => {
 	const items = (retrieved && retrieved['hydra:member']) || []
 
@@ -49,10 +59,10 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 								id
 							</th>
 							<th scope="col" className="px-6 py-3">
-								createdAt
+								created At
 							</th>
 							<th scope="col" className="px-6 py-3">
-								nbMessages
+								nb Messages
 							</th>
 							<th scope="col" className="px-6 py-3">
 								user
@@ -76,17 +86,19 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={{
 											href: `show/${encodeURIComponent(item['@id'])}`,
-											name: item['@id'],
+											name: extractConversationId(item['@id']),
 										}}
 									/>
 								</th>
-								<td className="px-6 py-4">{item['createdAt']}</td>
+								<td className="px-6 py-4">
+									{format(new Date(item['createdAt']), 'yyyy/MM/dd HH:mm')}
+								</td>
 								<td className="px-6 py-4">{item['nbMessages']}</td>
 								<td className="px-6 py-4">
 									<Links
 										items={{
 											href: `/users/show/${encodeURIComponent(item['user'])}`,
-											name: item['user'],
+											name: userMap[item['user']] || item['user'],
 										}}
 									/>
 								</td>
@@ -94,7 +106,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={{
 											href: `/users/show/${encodeURIComponent(item['bot'])}`,
-											name: item['bot'],
+											name: userMap[item['bot']] || item['bot'],
 										}}
 									/>
 								</td>

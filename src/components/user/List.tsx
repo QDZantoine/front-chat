@@ -12,6 +12,14 @@ interface ListProps {
 	loading: boolean
 	error: TError
 }
+const extractUserId = (id: string) => {
+	const parts = id.split('/')
+	return `user ${parts[parts.length - 1]}`
+}
+const extractConversationId = (id: string) => {
+	const parts = id.split('/')
+	return `conversation ${parts[parts.length - 1]}`
+}
 
 const ListView = ({ error, loading, retrieved }: ListProps) => {
 	const items = (retrieved && retrieved['hydra:member']) || []
@@ -53,13 +61,13 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 								roles
 							</th>
 							<th scope="col" className="px-6 py-3">
-								conversationUsers
+								conversation Users
 							</th>
 							<th scope="col" className="px-6 py-3">
-								conversationBots
+								conversation Bots
 							</th>
 							<th scope="col" className="px-6 py-3">
-								userIdentifier
+								user Identifier
 							</th>
 							<th colSpan={2} />
 						</tr>
@@ -77,7 +85,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={{
 											href: `show/${encodeURIComponent(item['@id'])}`,
-											name: item['@id'],
+											name: extractUserId(item['@id']),
 										}}
 									/>
 								</th>
@@ -87,7 +95,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={item['conversationUsers'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
-											name: ref,
+											name: extractConversationId(ref),
 										}))}
 									/>
 								</td>
@@ -95,7 +103,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 									<Links
 										items={item['conversationBots'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
-											name: ref,
+											name: extractConversationId(ref),
 										}))}
 									/>
 								</td>
