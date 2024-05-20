@@ -3,6 +3,7 @@ import Links from '../Links'
 import { useRetrieve, useDelete } from '../../hooks'
 import TResource from './type'
 import { TError } from '../../utils/types'
+import { Button, Spinner } from 'flowbite-react'
 
 interface ShowProps {
 	retrieved: TResource | null
@@ -11,6 +12,14 @@ interface ShowProps {
 	deleteError: TError
 	deleted: TResource | null
 	del: (item: TResource) => any
+}
+const extractUserId = (id: string) => {
+	const parts = id.split('/')
+	return parts[parts.length - 1]
+}
+const extractConversationId = (id: string) => {
+	const parts = id.split('/')
+	return `conversation ${parts[parts.length - 1]}`
 }
 
 const ShowView = ({
@@ -30,14 +39,20 @@ const ShowView = ({
 			del(item)
 		}
 	}
-
+	const UserId = item ? extractUserId(item['@id']) : ''
 	return (
 		<div>
-			<h1>Show User {item && item['@id']}</h1>
+			<h1 className="text-2xl font-extrabold dark:text-gray mb-4">
+				User {UserId}
+			</h1>
 
 			{loading && (
-				<div className="alert alert-info" role="status">
-					Loading...
+				<div className="flex justify-center mb-2">
+					{' '}
+					<Button color="gray">
+						<Spinner aria-label="Alternate spinner button example" size="md" />
+						<span className="pl-3">Loading...</span>
+					</Button>
 				</div>
 			)}
 			{error && (
@@ -58,47 +73,57 @@ const ShowView = ({
 					<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 						<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th>Field</th>
-								<th>Value</th>
+								<th scope="row" className="px-6 py-3">
+									Field
+								</th>
+								<th scope="row" className="px-6 py-3">
+									Value
+								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">username</th>
-								<td>{item['username']}</td>
+								<th scope="row" className="px-6 py-3">
+									username
+								</th>
+								<td className="px-6 py-4">{item['username']}</td>
 							</tr>
 							<tr>
-								<th scope="row">roles</th>
-								<td>{item['roles']}</td>
+								<th scope="row" className="px-6 py-3">
+									roles
+								</th>
+								<td className="px-6 py-4">{item['roles'].join(', ')}</td>
 							</tr>
 							<tr>
-								<th scope="row">password</th>
-								<td>{item['password']}</td>
-							</tr>
-							<tr>
-								<th scope="row">conversationUsers</th>
-								<td>
+								<th scope="row" className="px-6 py-3">
+									conversation Users
+								</th>
+								<td className="px-6 py-4">
 									<Links
 										items={item['conversationUsers'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
-											name: ref,
+											name: extractConversationId(ref),
 										}))}
 									/>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">conversationBots</th>
-								<td>
+								<th scope="row" className="px-6 py-3">
+									conversation Bots
+								</th>
+								<td className="px-6 py-4">
 									<Links
 										items={item['conversationBots'].map((ref: any) => ({
 											href: `/conversations/show/${encodeURIComponent(ref)}`,
-											name: ref,
+											name: extractConversationId(ref),
 										}))}
 									/>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">userIdentifier</th>
+								<th scope="row" className="px-6 py-3">
+									user Identifier
+								</th>
 								<td>{item['userIdentifier']}</td>
 							</tr>
 						</tbody>
