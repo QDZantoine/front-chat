@@ -18,7 +18,7 @@ const ListView = ({ error, loading, retrieved }: ListProps) => {
 
   return (
     <div>
-      <h1 className="text-5xl font-extrabold dark:text-white mb-4">Conversation List</h1>
+      <h1 className="text-5xl font-extrabold dark:text-gray mb-4">Conversation List</h1>
 
       {loading && <div className="flex justify-center mb-2"> <Button color="gray">
         <Spinner aria-label="Alternate spinner button example" size="md" />
