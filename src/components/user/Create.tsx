@@ -31,7 +31,9 @@ const CreateView = ({
 
 	return (
 		<div>
-			<h1>Create User</h1>
+			<h1 className="text-2xl font-extrabold dark:text-gray mb-4">
+				Create User
+			</h1>
 
 			{loading && (
 				<div className="flex justify-center mb-2">
