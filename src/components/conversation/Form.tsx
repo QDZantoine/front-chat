@@ -55,20 +55,6 @@ const Form = ({ onSubmit, error, reset, initialValues }: FormProps) => {
 		<form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
 			<Field
 				register={register}
-				name="created At"
-				placeholder=""
-				type="datetime-local" // Changer en "datetime-local" pour le bon type HTML5
-				errors={errors}
-			/>
-			<Field
-				register={register}
-				name="nb Messages"
-				placeholder=""
-				type="number"
-				errors={errors}
-			/>
-			<Field
-				register={register}
 				name="user"
 				placeholder=""
 				type="text"
@@ -81,14 +67,6 @@ const Form = ({ onSubmit, error, reset, initialValues }: FormProps) => {
 				type="text"
 				errors={errors}
 			/>
-			<Field
-				register={register}
-				name="messages"
-				placeholder=""
-				type="text"
-				errors={errors}
-			/>
-
 			<button
 				type="submit"
 				className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
