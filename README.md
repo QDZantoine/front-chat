@@ -11,14 +11,14 @@ Front Chat is a web application created with React and Vite in TypeScript. It al
 - Display a list of conversations.
 - View details of each conversation.
 
+![Front chat](public/front-chat-screenshot.png)
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your machine:
 
 - Node.js (version 14.x or higher)
 - npm (version 6.x or higher) or yarn
-
-![Front chat](public/front-chat-screenshot.png)
 
 ## Installation
 
