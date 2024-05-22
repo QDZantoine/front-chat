@@ -109,16 +109,4 @@ The application will be accessible at http://localhost:5173.
 
 ## API
 
-Here is an overview of the main endpoints:
-
-Conversations
-
-- GET /conversations: Retrieve a list of conversations.
-- GET /conversations/:id: Retrieve details of a specific conversation.
-- POST /conversations: Create a new conversation.
-- PUT /conversations/:id: Update an existing conversation.
-- DELETE /conversations/:id: Delete a conversation.
-- Messages
-- GET /conversations/:conversationId/messages: Retrieve messages of a conversation.
-- POST /conversations/:conversationId/messages: Add a message to a conversation.
-- DELETE /conversations/:conversationId/messages/:messageId: Delete a message from a conversation.
+[API-chat](https://github.com/QDZantoine/api-chat#)
