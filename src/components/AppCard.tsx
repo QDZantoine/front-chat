@@ -3,14 +3,14 @@ import '../App.css'
 
 const AppCard = () => {
 	return (
-		<Card className="w-full max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+		<Card className="w-full max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 dark:bg-gray-800 dark:border-gray-700">
 			<img
 				src="./public/front-background.png"
 				alt="Chatbot Illustration"
 				className="w-full h-80 object-cover"
 			/>
 			<div className="p-6">
-				<h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+				<h1 className="text-3xl font-bold text-gray-900 dark:text-gray-800 mb-4">
 					Projet d'API de Conversations entre Utilisateurs et Chatbot
 				</h1>
 				<p className="text-gray-700 dark:text-gray-400 mb-4">

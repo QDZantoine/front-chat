@@ -55,13 +55,6 @@ const Form = ({ onSubmit, error, reset, initialValues }: FormProps) => {
 		<form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
 			<Field
 				register={register}
-				name="created At"
-				placeholder=""
-				type="datetime-local" // Utiliser "datetime-local" pour le bon type HTML5
-				errors={errors}
-			/>
-			<Field
-				register={register}
 				name="text"
 				placeholder=""
 				type="text"
