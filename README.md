@@ -122,7 +122,3 @@ Conversations
 - GET /conversations/:conversationId/messages: Retrieve messages of a conversation.
 - POST /conversations/:conversationId/messages: Add a message to a conversation.
 - DELETE /conversations/:conversationId/messages/:messageId: Delete a message from a conversation.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
