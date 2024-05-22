@@ -107,6 +107,8 @@ The application will be accessible at http://localhost:5173.
 └── vite.config.ts
 ```
 
-## API
+## Backend API
+
+You can use the project api-chat:
 
 [API-chat](https://github.com/QDZantoine/api-chat#)
