@@ -8,10 +8,10 @@
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2,
 		"editor.formatOnSave": true,
-		"prettier.useTabs": true,
+		"prettier.useTabs": false,
 		"editor.detectIndentation": false,
 		"prettier.tabWidth": 2,
-		"prettier.singleQuote": true,
-		"prettier.semi": false
+		"prettier.singleQuote": false,
+		"prettier.semi": true
 	}
 }
